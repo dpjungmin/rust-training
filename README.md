@@ -1,4 +1,4 @@
-# Learning Rust by building mini applications
+## Learning Rust by building simple applications
 
 - **kvstore**: Simple key-value database
-- **server**: HTTP Server from scratch (진행중)
+- **server**: HTTP Server from scratch (진행중..)
