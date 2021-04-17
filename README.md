@@ -2,6 +2,7 @@
 
 - **kvstore**: simple key-value database
 - **server**: HTTP server from scratch
+- **vec**: custom Vec from scratch
 
 ### Future Tasks
 

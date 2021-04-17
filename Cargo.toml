@@ -3,4 +3,5 @@
 members = [
     "kvstore",
     "server",
+    "vec",
 ]
