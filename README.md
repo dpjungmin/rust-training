@@ -2,8 +2,9 @@
 
 - **kvstore**: simple key-value database
 - **server**: HTTP server from scratch
-- **vec**: custom Vec from scratch
-- **pipeviewer**: custom Pipeviewer from scratch
+- **vec**: simple `Vec` from scratch
+- **pipeviewer**: simple Pipeviewer from scratch
+- **hashmap**: simple `HashMap` from scratch
 
 ### Future Tasks
 
