@@ -1,7 +1,100 @@
+use std::{
+    collections::hash_map::DefaultHasher,
+    hash::{Hash, Hasher},
+    mem,
+};
+
+const INITIAL_BUCKETS: usize = 1;
+
+pub struct HashMap<K, V> {
+    buckets: Vec<Vec<(K, V)>>,
+    items: usize,
+}
+
+impl<K, V> HashMap<K, V> {
+    pub fn new() -> Self {
+        Self {
+            buckets: Vec::new(),
+            items: 0,
+        }
+    }
+}
+
+impl<K, V> HashMap<K, V>
+where
+    K: Hash + Eq,
+{
+    fn bucket(&self, key: &K) -> usize {
+        let mut hasher = DefaultHasher::new();
+        key.hash(&mut hasher);
+        (hasher.finish() % self.buckets.len() as u64) as usize
+    }
+
+    pub fn insert(&mut self, key: K, value: V) -> Option<V> {
+        if self.buckets.is_empty() || self.items > 3 * self.buckets.len() / 4 {
+            self.resize();
+        }
+
+        let bucket = self.bucket(&key);
+        let bucket = &mut self.buckets[bucket];
+
+        for &mut (ref ekey, ref mut evalue) in bucket.iter_mut() {
+            if ekey == &key {
+                return Some(mem::replace(evalue, value));
+            }
+        }
+
+        self.items += 1;
+        bucket.push((key, value));
+        None
+    }
+
+    pub fn get(&self, key: &K) -> Option<&V> {
+        let bucket = self.bucket(&key);
+        self.buckets[bucket]
+            .iter()
+            .find(|&(ref ekey, _)| ekey == key)
+            .map(|&(_, ref v)| v)
+    }
+
+    pub fn remove(&mut self, key: &K) -> Option<V> {
+        let bucket = self.bucket(&key);
+        let bucket = &mut self.buckets[bucket];
+        let i = bucket.iter().position(|&(ref ekey, _)| ekey == key)?;
+        Some(bucket.swap_remove(i).1)
+    }
+
+    fn resize(&mut self) {
+        let target_size = match self.buckets.len() {
+            0 => INITIAL_BUCKETS,
+            n => 2 * n,
+        };
+
+        let mut new_buckets = Vec::with_capacity(target_size);
+        new_buckets.extend((0..target_size).map(|_| Vec::new()));
+
+        for (key, value) in self.buckets.iter_mut().flat_map(|bucket| bucket.drain(..)) {
+            let mut hasher = DefaultHasher::new();
+            key.hash(&mut hasher);
+            let bucket = (hasher.finish() % new_buckets.len() as u64) as usize;
+            new_buckets[bucket].push((key, value));
+        }
+
+        mem::swap(&mut self.buckets, &mut new_buckets);
+    }
+}
+
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn insert() {
+        let mut map = HashMap::new();
+        map.insert("foo", 42);
+        assert_eq!(map.get(&"foo"), Some(&42));
+        assert_eq!(map.remove(&"foo"), Some(42));
+        assert_eq!(map.remove(&"foo"), None);
+        assert_eq!(map.get(&"foo"), None);
     }
 }
