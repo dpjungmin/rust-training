@@ -10,9 +10,9 @@ fn main() {
 
     for (k, v) in timber_resources.into_iter() {
         match k {
-            &"Norway" => assert_eq!(v, &100),
-            &"Denmark" => assert_eq!(v, &50),
-            &"Iceland" => assert_eq!(v, &10),
+            "Norway" => assert_eq!(v, 100),
+            "Denmark" => assert_eq!(v, 50),
+            "Iceland" => assert_eq!(v, 10),
             _ => unreachable!(),
         }
     }
