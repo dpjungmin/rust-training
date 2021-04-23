@@ -8,7 +8,7 @@ fn main() {
         .collect();
     // use the values stored in map
 
-    for (k, v) in timber_resources.into_iter() {
+    for (k, v) in timber_resources {
         match k {
             "Norway" => assert_eq!(v, 100),
             "Denmark" => assert_eq!(v, 50),
