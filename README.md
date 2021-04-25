@@ -6,7 +6,7 @@
 - **pipeviewer**: simple Pipeviewer from scratch
 - **hashmap**: simple `HashMap` from scratch
 
-### Future Tasks
+### Future tasks
 
 - **server**: handle headers in request and response
 - **server**: improve performance
