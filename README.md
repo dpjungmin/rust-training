@@ -10,5 +10,5 @@
 
 - **server**: handle headers in request and response
 - **server**: improve performance (multithread)
-- **hashmap**: insert items in sorted order to find items using binary search
 - **hashmap**: look up a value for a key by index
+- **hashmap**: insert items in sorted order to find items using binary search
