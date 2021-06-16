@@ -5,8 +5,9 @@
 - **vec**: simple `Vec` from scratch
 - **pipeviewer**: simple Pipeviewer from scratch
 - **hashmap**: simple `HashMap` from scratch
+- **calc**: arithmetic expression evaluator
 
-### Future tasks
+### Possible improvements
 
 - **server**: handle headers in request and response
 - **server**: improve performance (multithread)

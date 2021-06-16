@@ -6,4 +6,5 @@ members = [
     "vec",
     "pipeviewer",
     "hashmap",
+    "calc",
 ]
