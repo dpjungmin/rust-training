@@ -7,4 +7,5 @@ members = [
     "pipeviewer",
     "hashmap",
     "calc",
+    "template-engine",
 ]
