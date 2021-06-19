@@ -6,3 +6,4 @@
 - **pipeviewer**: simple Pipeviewer from scratch
 - **hashmap**: simple `HashMap` from scratch
 - **calc**: arithmetic expression evaluator
+- **template-engine**: simple template engine
