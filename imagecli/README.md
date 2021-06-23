@@ -1,0 +1,1 @@
+- The program supports only files of type jpg/JPG and png/PNG.

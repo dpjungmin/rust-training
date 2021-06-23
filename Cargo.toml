@@ -8,4 +8,5 @@ members = [
     "hashmap",
     "calc",
     "template-engine",
+    "imagecli",
 ]
