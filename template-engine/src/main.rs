@@ -12,9 +12,9 @@ fn main() {
 
     for line in io::stdin().lock().lines() {
         match get_content_type(&line.unwrap().clone()) {
-            ContentType::TemplateVariable(content) => {
-                let html = generate_html_template_var(content, context.clone());
-                println!("{}", html);
+            ContentType::TemplateVariable(mut content) => {
+                let html = generate_html_template_var(&mut content, context.clone());
+                println!("{}", html.gen_html);
             }
             ContentType::Literal(text) => println!("{}", text),
             ContentType::Tag(TagType::ForTag) => todo!(),
