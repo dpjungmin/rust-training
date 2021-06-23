@@ -134,6 +134,7 @@ mod tests {
     }
 
     #[test]
+
     fn check_for_tag_test() {
         assert_eq!(
             ContentType::Tag(TagType::ForTag),
